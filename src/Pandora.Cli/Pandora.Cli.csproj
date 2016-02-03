@@ -34,31 +34,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommandLine, Version=1.9.71.2, Culture=neutral, PublicKeyToken=de6f01bd326f8c32, processorArchitecture=MSIL">
-      <HintPath>..\src\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+      <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elders.Pandora, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pandora.0.4.0\lib\net45-full\Elders.Pandora.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Elders.Pandora.Box, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pandora.0.4.0\lib\net45-full\Elders.Pandora.Box.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\src\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Pandora, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\src\packages\Pandora.1.0.0-beta0001\lib\dotnet5.4\Pandora.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Pandora.Box, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\src\packages\Pandora.1.0.0-beta0001\lib\dotnet5.4\Pandora.Box.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.IO.FileSystem, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\src\packages\System.IO.FileSystem.4.0.1-beta-23516\lib\net46\System.IO.FileSystem.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\src\packages\System.IO.FileSystem.Primitives.4.0.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

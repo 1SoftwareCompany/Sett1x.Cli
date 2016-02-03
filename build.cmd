@@ -47,7 +47,7 @@ echo Downloading latest version of Nyx...
 SET TARGET="Build"
 IF NOT [%1]==[] (set TARGET="%1")
 
-SET SUMMARY="Elders.Pandora.Cli"
-SET DESCRIPTION="Elders.Pandora.Cli"
+SET SUMMARY="Pandora.Cli"
+SET DESCRIPTION="Pandora.Cli"
 
-%FAKE% %NYX% "target=%TARGET%"  appName=Elders.Pandora.Cli  appSummary=%SUMMARY% appDescription=%DESCRIPTION% nugetPackageName=Pandora.Cli appReleaseNotes=./src/RELEASE_NOTES.md
+%FAKE% %NYX% "target=%TARGET%"  appName=Pandora.Cli  appSummary=%SUMMARY% appDescription=%DESCRIPTION% nugetPackageName=Pandora.Cli appReleaseNotes=./src/RELEASE_NOTES.md
