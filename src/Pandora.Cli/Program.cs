@@ -52,6 +52,17 @@ namespace Elders.Pandora.Cli
                         Environment.SetEnvironmentVariable(setting.Key, setting.Value, EnvironmentVariableTarget.Machine);
                     }
                 }
+                else if (openOptions.Output == OpenOptions.ConsulOutput)
+                {
+                    var consul = new ConsulService();
+
+                    if (!string.Equals(null, openOptions.ConsulHost))
+                        consul.setAddress(new Uri(openOptions.ConsulHost));
+
+                    var hasAdded = consul.KvPutDictionary(cfg.AsDictionary());
+
+                    if (!hasAdded.GetAwaiter().GetResult()) throw new Exception("Something went wrong with Consul. Try again.");
+                }
                 else
                 {
                     var computedCfg = JsonConvert.SerializeObject(cfg.AsDictionary());
