@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Consul;
 using Elders.Pandora.Box;
 using Newtonsoft.Json;
 
@@ -43,7 +44,7 @@ namespace Elders.Pandora.Cli
                 var box = Box.Box.Mistranslate(jar);
                 if (box.Name != applicationName) throw new InvalidProgramException("Invalid grant");
 
-                var cfg = new Pandora(box).Open(new PandoraOptions(cluster, machine, false));
+                var cfg = box.Open(new PandoraOptions(cluster, machine, false));
 
                 if (openOptions.Output == OpenOptions.EnvVarOutput)
                 {
@@ -54,14 +55,15 @@ namespace Elders.Pandora.Cli
                 }
                 else if (openOptions.Output == OpenOptions.ConsulOutput)
                 {
-                    var consul = new ConsulService();
+                    var consulCfg = new ConsulClientConfiguration();
+                    if (string.IsNullOrEmpty(openOptions.ConsulHost) == false)
+                        consulCfg.Address = new Uri(openOptions.ConsulHost);
 
-                    if (!string.Equals(null, openOptions.ConsulHost))
-                        consul.setAddress(new Uri(openOptions.ConsulHost));
-
-                    var hasAdded = consul.KvPutDictionary(cfg.AsDictionary());
-
-                    if (!hasAdded.GetAwaiter().GetResult()) throw new Exception("Something went wrong with Consul. Try again.");
+                    var consul = new ConsulForPandora(consulCfg);
+                    foreach (var setting in cfg.AsDictionary())
+                    {
+                        consul.Set(setting.Key, setting.Value);
+                    }
                 }
                 else
                 {
