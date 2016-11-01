@@ -55,11 +55,11 @@ namespace Elders.Pandora.Cli
                 }
                 else if (openOptions.Output == OpenOptions.ConsulOutput)
                 {
-                    var consulCfg = new ConsulClientConfiguration();
+                    Uri consulAddress = null;
                     if (string.IsNullOrEmpty(openOptions.ConsulHost) == false)
-                        consulCfg.Address = new Uri(openOptions.ConsulHost);
+                        consulAddress = new Uri(openOptions.ConsulHost);
+                    var consul = new ConsulForPandora(consulAddress);
 
-                    var consul = new ConsulForPandora(consulCfg);
                     foreach (var setting in cfg.AsDictionary())
                     {
                         consul.Set(setting.Key, setting.Value);

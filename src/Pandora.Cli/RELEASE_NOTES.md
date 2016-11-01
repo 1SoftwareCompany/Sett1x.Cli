@@ -1,3 +1,6 @@
+#### 1.0.2 - 01.11.2016
+* Updates consul package
+
 #### 1.0.1 - 26.10.2016
 * Adds support for consul configuration store
 
