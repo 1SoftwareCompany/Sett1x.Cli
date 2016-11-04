@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using Consul;
 using Elders.Pandora.Box;
 using Newtonsoft.Json;
 

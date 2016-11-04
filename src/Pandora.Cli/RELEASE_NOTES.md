@@ -1,3 +1,6 @@
+#### 1.0.3 - 04.11.2016
+* Updates packages
+
 #### 1.0.2 - 01.11.2016
 * Updates consul package
 
