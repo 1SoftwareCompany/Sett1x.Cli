@@ -1,3 +1,6 @@
+#### 1.1.0-beta0001 - 12.11.2016
+* Adds suport for consul cluster unique keys
+
 #### 1.0.3 - 04.11.2016
 * Updates packages
 

@@ -59,6 +59,17 @@ namespace Elders.Pandora.Cli
                         consulAddress = new Uri(openOptions.ConsulHost);
                     var consul = new ConsulForPandora(consulAddress);
 
+                    foreach (var setting in consul.GetAll())
+                    {
+                        var isClusterSetting = string.IsNullOrEmpty(setting.Machine) && setting.Cluster == cluster;
+                        var isCurrentMachineSetting = setting.Raw.IndexOf(machine.ToLower()) > 0 && setting.Cluster == cluster;
+
+                        if (isClusterSetting || isCurrentMachineSetting)
+                        {
+                            consul.Delete(setting.Raw);
+                        }
+                    }
+
                     foreach (var setting in cfg.AsDictionary())
                     {
                         consul.Set(setting.Key, setting.Value);
