@@ -1,3 +1,6 @@
+#### 1.1.0-beta0002 - 12.11.2016
+* Changed Cluster Always preserved in storage
+
 #### 1.1.0-beta0001 - 12.11.2016
 * Adds suport for consul cluster unique keys
 

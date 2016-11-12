@@ -61,10 +61,9 @@ namespace Elders.Pandora.Cli
 
                     foreach (var setting in consul.GetAll())
                     {
-                        var isClusterSetting = string.IsNullOrEmpty(setting.Machine) && setting.Cluster == cluster;
                         var isCurrentMachineSetting = setting.Raw.IndexOf(machine.ToLower()) > 0 && setting.Cluster == cluster;
 
-                        if (isClusterSetting || isCurrentMachineSetting)
+                        if (isCurrentMachineSetting)
                         {
                             consul.Delete(setting.Raw);
                         }
