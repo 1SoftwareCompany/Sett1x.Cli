@@ -1,3 +1,6 @@
+#### 1.1.0-beta0003 - 14.11.2016
+* Changed consul provider to use the Pandora Box Implementation
+
 #### 1.1.0-beta0002 - 12.11.2016
 * Changed Cluster Always preserved in storage
 
