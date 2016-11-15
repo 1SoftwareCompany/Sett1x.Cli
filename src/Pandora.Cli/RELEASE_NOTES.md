@@ -1,13 +1,5 @@
-#### 1.1.0-beta0004 - 15.11.2016
-* Switched use of getAll(provider) from Pandora latest update  and updated Pandora package
-
-#### 1.1.0-beta0003 - 14.11.2016
-* Changed consul provider to use the Pandora Box Implementation
-
-#### 1.1.0-beta0002 - 12.11.2016
+#### 1.1.0 - 15.11.2016
 * Changed Cluster Always preserved in storage
-
-#### 1.1.0-beta0001 - 12.11.2016
 * Adds suport for consul cluster unique keys
 
 #### 1.0.3 - 04.11.2016
