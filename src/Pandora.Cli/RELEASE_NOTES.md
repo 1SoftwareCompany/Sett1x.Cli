@@ -1,3 +1,7 @@
+#### 1.1.0 - 15.11.2016
+* Changed Cluster Always preserved in storage
+* Adds suport for consul cluster unique keys
+
 #### 1.0.3 - 04.11.2016
 * Updates packages
 

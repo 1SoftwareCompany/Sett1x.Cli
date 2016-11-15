@@ -43,7 +43,7 @@ namespace Elders.Pandora.Cli
                 var box = Box.Box.Mistranslate(jar);
                 if (box.Name != applicationName) throw new InvalidProgramException("Invalid grant");
 
-                var cfg = box.Open(new PandoraOptions(cluster, machine, false));
+                var cfg = box.Open(new PandoraOptions(cluster, machine));
 
                 if (openOptions.Output == OpenOptions.EnvVarOutput)
                 {
@@ -58,6 +58,14 @@ namespace Elders.Pandora.Cli
                     if (string.IsNullOrEmpty(openOptions.ConsulHost) == false)
                         consulAddress = new Uri(openOptions.ConsulHost);
                     var consul = new ConsulForPandora(consulAddress);
+                    var currentContext = ApplicationConfiguration.CreateContext(applicationName);
+
+                    var pandora = new Pandora(currentContext, consul);
+
+                    foreach (var setting in pandora.GetAll(currentContext))
+                    {
+                        consul.Delete(setting.Raw);
+                    }
 
                     foreach (var setting in cfg.AsDictionary())
                     {
