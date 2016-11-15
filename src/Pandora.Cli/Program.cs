@@ -43,7 +43,7 @@ namespace Elders.Pandora.Cli
                 var box = Box.Box.Mistranslate(jar);
                 if (box.Name != applicationName) throw new InvalidProgramException("Invalid grant");
 
-                var cfg = box.Open(new PandoraOptions(cluster, machine, false));
+                var cfg = box.Open(new PandoraOptions(cluster, machine));
 
                 if (openOptions.Output == OpenOptions.EnvVarOutput)
                 {
