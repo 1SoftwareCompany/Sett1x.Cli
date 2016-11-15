@@ -62,14 +62,9 @@ namespace Elders.Pandora.Cli
 
                     var pandora = new Pandora(currentContext, consul);
 
-                    foreach (var setting in pandora.GetAll())
+                    foreach (var setting in pandora.GetAll(currentContext))
                     {
-                        var isCurrentMachineSetting = setting.Raw.IndexOf(machine, StringComparison.OrdinalIgnoreCase) > 0 && setting.Cluster == cluster;
-
-                        if (isCurrentMachineSetting)
-                        {
-                            consul.Delete(setting.Raw);
-                        }
+                        consul.Delete(setting.Raw);
                     }
 
                     foreach (var setting in cfg.AsDictionary())
