@@ -58,7 +58,7 @@ namespace Elders.Pandora.Cli
                     if (string.IsNullOrEmpty(openOptions.ConsulHost) == false)
                         consulAddress = new Uri(openOptions.ConsulHost);
                     var consul = new ConsulForPandora(consulAddress);
-                    var currentContext = ApplicationConfiguration.CreateContext(applicationName);
+                    var currentContext = ApplicationConfiguration.CreateContext(applicationName,cluster,machine);
 
                     var pandora = new Pandora(currentContext, consul);
 

@@ -1,3 +1,6 @@
+#### 1.1.1 - 16.11.2016
+* Fix not removing the machine specific keys
+
 #### 1.1.0 - 15.11.2016
 * Changed Cluster Always preserved in storage
 * Adds suport for consul cluster unique keys
