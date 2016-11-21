@@ -7,10 +7,11 @@
     <authors>@authors@</authors>
     <language>en-US</language>
     <summary>@summary@</summary>
+    <iconUrl>https://raw.githubusercontent.com/Elders/logo/master/pandora/gray.png</iconUrl>
     <licenseUrl>https://github.com/Elders/Pandora.Cli/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Elders/Pandora.Cli</projectUrl>
     <releaseNotes>@releaseNotes@</releaseNotes>
-    <tags>configuration config cli</tags>
+    <tags>configuration config cli pandora</tags>
     @dependencies@
   </metadata>
 </package>

@@ -1,3 +1,6 @@
+#### 1.1.2 - 22.11.2016
+* New logo
+
 #### 1.1.1 - 16.11.2016
 * Fix not removing the machine specific keys
 

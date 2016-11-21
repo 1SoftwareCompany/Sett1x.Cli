@@ -58,13 +58,13 @@ namespace Elders.Pandora.Cli
                     if (string.IsNullOrEmpty(openOptions.ConsulHost) == false)
                         consulAddress = new Uri(openOptions.ConsulHost);
                     var consul = new ConsulForPandora(consulAddress);
-                    var currentContext = ApplicationConfiguration.CreateContext(applicationName,cluster,machine);
+                    ApplicationContext currentContext = (ApplicationContext)ApplicationConfiguration.CreateContext(applicationName, cluster, machine);
 
                     var pandora = new Pandora(currentContext, consul);
 
                     foreach (var setting in pandora.GetAll(currentContext))
                     {
-                        consul.Delete(setting.Raw);
+                        pandora.Delete(setting.Raw);
                     }
 
                     foreach (var setting in cfg.AsDictionary())
