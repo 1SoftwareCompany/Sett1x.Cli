@@ -1,3 +1,6 @@
+#### 1.1.4 - 27.11.2016
+* Updates Pandora
+
 #### 1.1.3 - 22.11.2016
 * Updates Pandora
 
