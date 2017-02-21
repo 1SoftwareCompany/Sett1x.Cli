@@ -2,6 +2,7 @@
 using System.IO;
 using Elders.Pandora.Box;
 using Newtonsoft.Json;
+using System.ComponentModel;
 
 namespace Elders.Pandora.Cli
 {
@@ -49,7 +50,7 @@ namespace Elders.Pandora.Cli
                 {
                     foreach (var setting in cfg.AsDictionary())
                     {
-                        Environment.SetEnvironmentVariable(setting.Key, setting.Value, EnvironmentVariableTarget.Machine);
+                        Environment.SetEnvironmentVariable(setting.Key, ConvertToString(setting.Value), EnvironmentVariableTarget.Machine);
                     }
                 }
                 else if (openOptions.Output == OpenOptions.ConsulOutput)
@@ -69,7 +70,7 @@ namespace Elders.Pandora.Cli
 
                     foreach (var setting in cfg.AsDictionary())
                     {
-                        consul.Set(setting.Key, setting.Value);
+                        consul.Set(setting.Key, ConvertToString(setting.Value));
                     }
                 }
                 else
@@ -80,6 +81,23 @@ namespace Elders.Pandora.Cli
             }
 
             return 0;
+        }
+
+        private static string ConvertToString(object value)
+        {
+            var stringValue = string.Empty;
+
+            var converter = TypeDescriptor.GetConverter(typeof(string));
+            if (converter.IsValid(value))
+            {
+                stringValue = (string)converter.ConvertFrom(value);
+            }
+            else
+            {
+                stringValue = JsonConvert.SerializeObject(value);
+            }
+
+            return stringValue;
         }
     }
 }
