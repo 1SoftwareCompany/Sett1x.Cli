@@ -1,3 +1,6 @@
+#### 1.2.1 - 22.02.2017
+* Updates Pandora to 0.7.1
+
 #### 1.2.0 - 22.02.2017
 * Updates Pandora to 0.7.0
 
