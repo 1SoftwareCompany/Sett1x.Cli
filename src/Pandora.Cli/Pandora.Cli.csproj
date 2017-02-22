@@ -41,12 +41,12 @@
       <HintPath>..\packages\Consul.0.7.0.3\lib\net45\Consul.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Elders.Pandora, Version=0.6.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pandora.0.6.9\lib\net45-full\Elders.Pandora.dll</HintPath>
+    <Reference Include="Elders.Pandora, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pandora.0.7.0\lib\net45-full\Elders.Pandora.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Elders.Pandora.Box, Version=0.6.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Pandora.0.6.9\lib\net45-full\Elders.Pandora.Box.dll</HintPath>
+    <Reference Include="Elders.Pandora.Box, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Pandora.0.7.0\lib\net45-full\Elders.Pandora.Box.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Elders.Pandora.Consul, Version=0.6.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -67,13 +67,14 @@
     <Compile Include="Options..cs" />
     <Compile Include="OpenOptions.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>

@@ -1,3 +1,9 @@
+#### 1.2.0 - 22.02.2017
+* Updates Pandora to 0.7.0
+
+#### 1.2.0-beta0001 - 21.02.2017
+* Updates Pandora to support complex values
+
 #### 1.1.4 - 27.11.2016
 * Updates Pandora
 
