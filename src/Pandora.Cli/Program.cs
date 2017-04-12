@@ -42,7 +42,7 @@ namespace Elders.Pandora.Cli
 
                 var jar = JsonConvert.DeserializeObject<Jar>(File.ReadAllText(jarFile));
                 var box = Box.Box.Mistranslate(jar);
-                if (box.Name != applicationName) throw new InvalidProgramException("Invalid grant");
+                if (box.Name.Equals(applicationName, StringComparison.OrdinalIgnoreCase) == false) throw new InvalidProgramException("Invalid application name");
 
                 var cfg = box.Open(new PandoraOptions(cluster, machine));
 

@@ -1,3 +1,6 @@
+#### 1.2.3 - 12.04.2017
+* Check for application name is now caseinsensitive
+
 #### 1.2.2 - 23.02.2017
 * Updates Pandora to 0.7.2
 
