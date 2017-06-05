@@ -12,6 +12,5 @@
     <projectUrl>https://github.com/Elders/Pandora.Cli</projectUrl>
     <releaseNotes>@releaseNotes@</releaseNotes>
     <tags>configuration config cli pandora</tags>
-    @dependencies@
   </metadata>
 </package>

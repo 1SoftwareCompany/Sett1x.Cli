@@ -1,3 +1,6 @@
+#### 1.3.0 - 05.06.2017
+* Updates to latest pandora. Consul!
+
 #### 1.2.3 - 12.04.2017
 * Check for application name is now caseinsensitive
 
