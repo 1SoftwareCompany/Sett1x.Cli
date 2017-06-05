@@ -65,7 +65,7 @@ namespace Elders.Pandora.Cli
 
                     foreach (var setting in pandora.GetAll(currentContext))
                     {
-                        pandora.Delete(setting.Raw);
+                        pandora.Delete(setting.Key.SettingKey);
                     }
 
                     foreach (var setting in cfg.AsDictionary())
