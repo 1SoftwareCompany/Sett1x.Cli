@@ -1,3 +1,6 @@
+#### 1.4.0 - 20.06.2017
+* Updates to latest Pandora. Fixed configuration merging
+
 #### 1.3.0 - 05.06.2017
 * Updates to latest pandora. Consul!
 
