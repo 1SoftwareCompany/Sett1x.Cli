@@ -8,7 +8,11 @@ namespace Elders.Pandora.Cli
         public Options()
         {
             OpenVerb = new OpenOptions();
+            GetVerb = new GetOptions();
         }
+
+        [VerbOption("get", HelpText = "Opens the pandora box.")]
+        public GetOptions GetVerb { get; set; }
 
         [VerbOption("open", HelpText = "Opens the pandora box.")]
         public OpenOptions OpenVerb { get; set; }
