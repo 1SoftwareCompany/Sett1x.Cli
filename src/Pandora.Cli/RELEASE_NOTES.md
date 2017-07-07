@@ -1,3 +1,6 @@
+#### 1.5.0 - 07.07.2017
+* Adds ability to read keys
+
 #### 1.4.0 - 20.06.2017
 * Updates to latest Pandora. Fixed configuration merging
 
