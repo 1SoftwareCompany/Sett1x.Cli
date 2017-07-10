@@ -3,7 +3,7 @@
 ```
 @echo off
 set result=
-set command=Elders.Pandora.Cli.exe get -a %application% -c %cluster% -m %computername% -o consul -h http://consul.local.com:8500/ -key THEKEY
+set command=Elders.Pandora.Cli.exe get -a %application% -c %cluster% -m %computername% -o consul -h http://consul.local.com:8500/ -k THEKEY
 for /f "delims=" %%i in ('%command%') do SET "result=%%i"
 
 echo %result%
