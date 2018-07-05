@@ -1,3 +1,6 @@
+#### 1.6.0 - 05.07.2018
+* Adds ability to validate jars
+
 #### 1.5.0 - 07.07.2017
 * Adds ability to read keys
 
