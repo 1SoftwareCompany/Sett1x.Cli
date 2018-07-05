@@ -3,13 +3,19 @@ using System.IO;
 using Elders.Pandora.Box;
 using Newtonsoft.Json;
 using System.ComponentModel;
+using Elders.Pandora.Cli.Logging;
 
 namespace Elders.Pandora.Cli
 {
     public class Program
     {
+        static ILog log;
+
         public static int Main(string[] args)
         {
+            LogStartup.Boot();
+            log = LogProvider.GetLogger(typeof(Program));
+
             try
             {
                 string invokedVerb = string.Empty;
@@ -98,9 +104,16 @@ namespace Elders.Pandora.Cli
                         Console.WriteLine(value);
                     }
                 }
+                else if (invokedVerb.Equals("validate", StringComparison.OrdinalIgnoreCase))
+                {
+                    var validateOptions = (ValidateOptions)invokedVerbInstance;
+
+                    Validator.Validator.Validate(validateOptions.Path, validateOptions.FileName + ".json");
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                log.ErrorException(ex.Message, ex);
                 return 1;
             }
 
