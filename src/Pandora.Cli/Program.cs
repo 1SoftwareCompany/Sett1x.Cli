@@ -4,6 +4,7 @@ using Elders.Pandora.Box;
 using Newtonsoft.Json;
 using System.ComponentModel;
 using Elders.Pandora.Cli.Logging;
+using Elders.Pandora.Cli.OptionTypes;
 
 namespace Elders.Pandora.Cli
 {
@@ -107,8 +108,13 @@ namespace Elders.Pandora.Cli
                 else if (invokedVerb.Equals("validate", StringComparison.OrdinalIgnoreCase))
                 {
                     var validateOptions = (ValidateOptions)invokedVerbInstance;
+                    var fileName = validateOptions.FileName + ".json";
 
-                    Validator.Validator.Validate(validateOptions.Path, validateOptions.FileName + ".json");
+                    log.Info($"STARTED -> validating '{fileName}' in directory '{validateOptions.Path}'");
+
+                    Validator.Validator.Validate(validateOptions.Path, fileName);
+
+                    log.Info($"FINISHED -> validating '{fileName}' in directory '{validateOptions.Path}'");
                 }
             }
             catch (Exception ex)

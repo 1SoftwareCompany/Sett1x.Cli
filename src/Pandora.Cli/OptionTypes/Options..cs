@@ -1,7 +1,7 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 
-namespace Elders.Pandora.Cli
+namespace Elders.Pandora.Cli.OptionTypes
 {
     public class Options
     {

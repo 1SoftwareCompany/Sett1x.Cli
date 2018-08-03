@@ -1,3 +1,8 @@
+#### 1.6.1 - 05.07.2018
+* On error the process exits
+* Errors are now displayed in RED
+* Info logs are reduced only to the status of the root jar we are validating
+
 #### 1.6.0 - 05.07.2018
 * Adds ability to validate jars
 
