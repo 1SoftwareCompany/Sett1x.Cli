@@ -72,10 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
+    <Compile Include="OptionTypes\GetOptions.cs" />
     <Compile Include="LogStartup.cs" />
-    <Compile Include="Options..cs" />
-    <Compile Include="OpenOptions.cs" />
+    <Compile Include="OptionTypes\Options..cs" />
+    <Compile Include="OptionTypes\OpenOptions.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="OptionTypes\ValidateOptions.cs" />
     <Compile Include="Validator\Jar.cs" />
     <Compile Include="Validator\Reference.cs" />
     <Compile Include="Validator\Validator.cs" />

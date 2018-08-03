@@ -10,20 +10,11 @@ namespace Elders.Pandora.Cli.Validator
 
         public static void Validate(string path, string fileName)
         {
-            log.Info($"STARTED -> validating '{fileName}' in directory '{path}'");
             var mainJar = ReadJarFromFile($"{path}/{fileName}");
             if (mainJar.IsValid() == false)
             {
-                log.Error($"FAILED -> validating '{fileName}' in directory '{path}'");
-                return;
+                throw new ValidatorException($"FAILED -> validating '{path}/{fileName}' in directory '{path}'");
             }
-            else
-            {
-                log.Info($"JAR {mainJar.Name} was validated.");
-            }
-
-            log.Info($"STARTED -> validating references of '{fileName}' in directory '{path}'");
-
 
             if (ReferenceEquals(null, mainJar.References) == false)
             {
@@ -31,10 +22,7 @@ namespace Elders.Pandora.Cli.Validator
                 {
                     Validate(path, reference.Jar.ToString());
                 }
-                log.Info($"FINISHED -> validating references of '{fileName}' in directory '{path}'");
             }
-
-            log.Info($"FINISHED -> validating '{fileName}' in directory '{path}'");
         }
 
         static Jar ReadJarFromFile(string filePath)

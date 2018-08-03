@@ -44,8 +44,7 @@ namespace Elders.Pandora.Cli
             appender.Layout = new log4net.Layout.PatternLayout("%date %newline%message%newline%newline");
 
             var errorMapping = new log4net.Appender.ColoredConsoleAppender.LevelColors();
-            errorMapping.ForeColor = log4net.Appender.ColoredConsoleAppender.Colors.White;
-            errorMapping.BackColor = log4net.Appender.ColoredConsoleAppender.Colors.Red & log4net.Appender.ColoredConsoleAppender.Colors.HighIntensity;
+            errorMapping.ForeColor = log4net.Appender.ColoredConsoleAppender.Colors.Red;
             errorMapping.Level = log4net.Core.Level.Error;
             appender.AddMapping(errorMapping);
 
@@ -55,7 +54,7 @@ namespace Elders.Pandora.Cli
             appender.AddMapping(warnMapping);
 
             var infoMapping = new log4net.Appender.ColoredConsoleAppender.LevelColors();
-            infoMapping.BackColor = log4net.Appender.ColoredConsoleAppender.Colors.Green;
+            infoMapping.ForeColor = log4net.Appender.ColoredConsoleAppender.Colors.Green;
             infoMapping.Level = log4net.Core.Level.Info;
             appender.AddMapping(infoMapping);
 
