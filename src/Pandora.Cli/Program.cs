@@ -120,7 +120,7 @@ namespace Elders.Pandora.Cli
             catch (Exception ex)
             {
                 log.ErrorException(ex.Message, ex);
-                return 0;
+                return 1;
             }
 
             return 0;
