@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pandora.Cli", "Pandora.Cli\Pandora.Cli.csproj", "{AD87A8A0-EBC4-448E-80C9-6E9D27455F47}"
 EndProject
@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{BC49E8
 		Pandora.Cli\Pandora.Cli.nuspec = Pandora.Cli\Pandora.Cli.nuspec
 		Pandora.Cli\RELEASE_NOTES.md = Pandora.Cli\RELEASE_NOTES.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pandora.Cli.Core", "Pandora.Cli.Core\Pandora.Cli.Core.csproj", "{76BD6942-E08A-45CF-B466-17CA9301A8A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{AD87A8A0-EBC4-448E-80C9-6E9D27455F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AD87A8A0-EBC4-448E-80C9-6E9D27455F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AD87A8A0-EBC4-448E-80C9-6E9D27455F47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76BD6942-E08A-45CF-B466-17CA9301A8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76BD6942-E08A-45CF-B466-17CA9301A8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76BD6942-E08A-45CF-B466-17CA9301A8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76BD6942-E08A-45CF-B466-17CA9301A8A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF916EE2-74B3-4C2B-B99B-B0CA54ABB784}
 	EndGlobalSection
 EndGlobal
