@@ -1,13 +1,10 @@
-﻿using Elders.Pandora.Cli.Logging;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace Elders.Pandora.Cli.Validator
+namespace Pandora.Cli.Core.Validator
 {
     public static class Validator
     {
-        static ILog log = LogProvider.GetLogger(typeof(Validator));
-
         public static void Validate(string path, string fileName)
         {
             var mainJar = ReadJarFromFile($"{path}/{fileName}");
@@ -16,7 +13,7 @@ namespace Elders.Pandora.Cli.Validator
                 throw new ValidatorException($"FAILED -> validating '{path}/{fileName}' in directory '{path}'");
             }
 
-            if (ReferenceEquals(null, mainJar.References) == false)
+            if (mainJar.References is null == false)
             {
                 foreach (var reference in mainJar.References)
                 {

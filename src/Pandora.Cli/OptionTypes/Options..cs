@@ -1,7 +1,7 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 
-namespace Elders.Pandora.Cli.OptionTypes
+namespace Pandora.Cli.Core.OptionTypes
 {
     public class Options
     {
@@ -11,22 +11,14 @@ namespace Elders.Pandora.Cli.OptionTypes
             GetVerb = new GetOptions();
         }
 
-        [VerbOption("get", HelpText = "Opens the pandora box.")]
         public GetOptions GetVerb { get; set; }
 
-        [VerbOption("open", HelpText = "Opens the pandora box.")]
         public OpenOptions OpenVerb { get; set; }
 
-        [VerbOption("validate", HelpText = "Validates a pandora root jar configuration file")]
         public ValidateOptions ValidateVerb { get; set; }
-
-        [ParserState]
-        public IParserState LastParserState { get; set; }
-
-        [HelpOption]
-        public string GetUsage(string verb = null)
-        {
-            return HelpText.AutoBuild(this, verb);
-        }
+        //public string GetUsage(string verb = null)
+        //{
+        //    return HelpText.AutoBuild(this, verb);
+        //} // temporarily check 
     }
 }

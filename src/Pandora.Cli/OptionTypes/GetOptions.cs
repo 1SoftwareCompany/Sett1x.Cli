@@ -1,7 +1,8 @@
 ﻿using CommandLine;
 
-namespace Elders.Pandora.Cli.OptionTypes
+namespace Pandora.Cli.Core.OptionTypes
 {
+    [Verb("get", HelpText = "Opens the pandora box.")]
     public class GetOptions
     {
         public const string EnvVarOutput = "envvar";
@@ -16,7 +17,7 @@ namespace Elders.Pandora.Cli.OptionTypes
         [Option('a', "application", HelpText = "Application name")]
         public string Application { get; set; }
 
-        [Option('o', "output", DefaultValue = EnvVarOutput, HelpText = "Output")]
+        [Option('o', "output", Default = EnvVarOutput, HelpText = "Output")]
         public string Output { get; set; }
 
         [Option('h', "consulhost", HelpText = "ConsulHost")]

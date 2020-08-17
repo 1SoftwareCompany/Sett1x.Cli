@@ -1,14 +1,10 @@
-﻿using Elders.Pandora.Cli.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Elders.Pandora.Cli.Validator
+namespace Pandora.Cli.Core.Validator
 {
     public class Jar
     {
-        static ILog log = LogProvider.GetLogger(typeof(Jar));
-
         public string Name { get; set; }
 
         public IEnumerable<Reference> References { get; set; }
@@ -29,7 +25,7 @@ namespace Elders.Pandora.Cli.Validator
         {
             var defaults = GetDefaults();
 
-            if (ReferenceEquals(null, (JObject)Clusters))
+            if ((JObject)Clusters is null)
                 return true;
 
             foreach (var prop in (JObject)Clusters)
@@ -39,14 +35,9 @@ namespace Elders.Pandora.Cli.Validator
                 foreach (var pr in (JObject)prop.Value)
                 {
                     if (defaults.Contains(pr.Key) == false)
-                    {
-                        log.Error($"Property '{pr.Key}' in cluster '{clusterName}' has wrong name ");
-
                         return false;
-                    }
                 }
             }
-
 
             return true;
         }
@@ -54,8 +45,6 @@ namespace Elders.Pandora.Cli.Validator
         private List<string> GetDefaults()
         {
             var defaults = new List<string>();
-
-            dynamic result = JsonConvert.DeserializeObject<dynamic>(Defaults.ToString());
 
             foreach (var property in (JObject)Defaults)
             {

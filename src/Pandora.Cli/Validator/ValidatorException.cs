@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Elders.Pandora.Cli.Validator
+namespace Pandora.Cli.Core.Validator
 {
     public class ValidatorException : Exception
     {
