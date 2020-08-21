@@ -8,6 +8,9 @@ namespace Pandora.Cli.Core.OptionTypes
         public const string EnvVarOutput = "envvar";
         public const string ConsulOutput = "consul";
 
+        [Option('d', "workingDir", HelpText = "Working directory")]
+        public string WorkingDirectory { get; set; }
+
         [Option('j', "jar", HelpText = "Input jar file")]
         public string Jar { get; set; }
 

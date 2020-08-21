@@ -2,7 +2,7 @@
   "profiles": {
     "Pandora.Cli.Core": {
       "commandName": "Project",
-      "commandLineArgs": "open -j Vapt.Service.Host.json -a Vapt.Service.Host -c docker-local -m ELDER-4 -o consul -h http://consul.local.com:8500/"
+      "commandLineArgs": "open -d D:\\_\\obs\\LifestylePlatform.Configuration\\vapt\\src\\Vapt.Configuration\\public -j Vapt.Service.Host.json -a Vapt.Service.Host -c docker-local -m ELDER-4 -o consul -h http://consul.local.com:8500/"
     }
   }
 }

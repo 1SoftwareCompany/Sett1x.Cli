@@ -15,25 +15,18 @@ namespace Pandora.Cli.Core
         {
             try
             {
-                if (args == null || args.Length == 0)
-                {
-                    Console.WriteLine(new Options());
-                    return 0;
-                }
-
-                var zz = CommandLine.Parser.Default.ParseArguments<OpenOptions, GetOptions, ValidateOptions>(args).MapResult(
-                    (OpenOptions opts) => OpenComand(opts),
-                    (GetOptions opts) => GetCommand(opts),
-                    (ValidateOptions opts) => ValidateCommand(opts),
-                    _ => "Could not set the variable!"
+                Parser.Default
+                    .ParseArguments<OpenOptions, GetOptions, ValidateOptions>(args)
+                    .MapResult(
+                        (OpenOptions opts) => OpenComand(opts),
+                        (GetOptions opts) => GetCommand(opts),
+                        (ValidateOptions opts) => ValidateCommand(opts),
+                        _ => "Could not set the variable!"
                     );
-
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                // log.ErrorException(ex.Message, ex);
                 return 1;
             }
 
@@ -92,6 +85,9 @@ namespace Pandora.Cli.Core
             string cluster = openOptions.Cluster;
             string machine = openOptions.Machine;
             string jarFile = openOptions.Jar ?? openOptions.Application + ".json";
+            if (string.IsNullOrEmpty(openOptions.WorkingDirectory) == false)
+                Directory.SetCurrentDirectory(openOptions.WorkingDirectory);
+
             if (!File.Exists(jarFile)) throw new FileNotFoundException("Jar file is required.", jarFile);
 
             var jar = JsonConvert.DeserializeObject<Elders.Pandora.Box.Jar>(File.ReadAllText(jarFile));

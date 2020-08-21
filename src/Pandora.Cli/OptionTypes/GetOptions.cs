@@ -2,7 +2,7 @@
 
 namespace Pandora.Cli.Core.OptionTypes
 {
-    [Verb("get", HelpText = "Opens the pandora box.")]
+    [Verb("get", HelpText = "Gets a specific key.")]
     public class GetOptions
     {
         public const string EnvVarOutput = "envvar";
