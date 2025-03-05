@@ -4,6 +4,7 @@ using Elders.Pandora.Box;
 using Newtonsoft.Json;
 using Pandora.Cli.Core.OptionTypes;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 
@@ -18,7 +19,7 @@ namespace Pandora.Cli.Core
                 Parser.Default
                     .ParseArguments<OpenOptions, GetOptions, ValidateOptions>(args)
                     .MapResult(
-                        (OpenOptions opts) => OpenComand(opts),
+                        (OpenOptions opts) => OpenCommand(opts),
                         (GetOptions opts) => GetCommand(opts),
                         (ValidateOptions opts) => ValidateCommand(opts),
                         _ => "Could not set the variable!"
@@ -49,7 +50,6 @@ namespace Pandora.Cli.Core
             }
             catch (Exception ex)
             {
-
                 return $"Validation failed: `{ex.Message}`";
             }
         }
@@ -77,7 +77,7 @@ namespace Pandora.Cli.Core
             return string.Empty;
         }
 
-        private static string OpenComand(object invokedVerbInstance)
+        private static string OpenCommand(object invokedVerbInstance)
         {
             var openOptions = (OpenOptions)invokedVerbInstance;
 
@@ -90,18 +90,26 @@ namespace Pandora.Cli.Core
 
             if (!File.Exists(jarFile)) throw new FileNotFoundException("Jar file is required.", jarFile);
 
-            var jar = JsonConvert.DeserializeObject<Elders.Pandora.Box.Jar>(File.ReadAllText(jarFile));
-            var box = Box.Mistranslate(jar);
+            Jar jar = JsonConvert.DeserializeObject<Jar>(File.ReadAllText(jarFile));
+            Box box = Box.Mistranslate(jar);
             if (box.Name.Equals(applicationName, StringComparison.OrdinalIgnoreCase) == false) throw new InvalidProgramException("Invalid application name");
 
-            var cfg = box.Open(new PandoraOptions(cluster, machine));
+            Configuration cfg = box.Open(new PandoraOptions(cluster, machine));
 
             if (openOptions.Output == OpenOptions.EnvVarOutput)
             {
-                foreach (var setting in cfg.AsDictionary())
+
+                foreach (KeyValuePair<string, object> setting in cfg.AsDictionary())
                 {
+                    if (cfg.IsDynamic(setting.Key)) // If the setting is dynamic and it already exist in Env Vars, we must skip it
+                    {
+                        string envVar = Environment.GetEnvironmentVariable(setting.Key);
+                        if (string.IsNullOrEmpty(envVar) == false) continue;
+                    }
+
                     Environment.SetEnvironmentVariable(setting.Key, ConvertToString(setting.Value), EnvironmentVariableTarget.Machine);
                 }
+
                 return "Wrote to EnvVar!";
             }
             else if (openOptions.Output == OpenOptions.ConsulOutput)
@@ -114,13 +122,24 @@ namespace Pandora.Cli.Core
 
                 var pandora = new Elders.Pandora.Pandora(currentContext, consul);
 
-                foreach (var setting in pandora.GetAll(currentContext))
+                foreach (DeployedSetting setting in pandora.GetAll(currentContext))
                 {
+                    // We must skip all dynamic settings
+                    string key = NameBuilder.GetSettingName(setting.Key.ApplicationName, setting.Key.Cluster, setting.Key.Machine, setting.Key.SettingKey);
+                    if (cfg.IsDynamic(key))
+                        continue;
+
                     pandora.Delete(setting.Key.SettingKey);
                 }
 
-                foreach (var setting in cfg.AsDictionary())
+                foreach (KeyValuePair<string, object> setting in cfg.AsDictionary())
                 {
+                    if (cfg.IsDynamic(setting.Key)) // If the setting is dynamic and it already exist in consul, we must skip it
+                    {
+                        bool exist = consul.Exists(setting.Key);
+                        if (exist) continue;
+                    }
+
                     consul.Set(setting.Key, ConvertToString(setting.Value));
                 }
 

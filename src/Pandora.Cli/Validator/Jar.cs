@@ -15,6 +15,7 @@ namespace Pandora.Cli.Core.Validator
 
         public object Machines { get; set; }
 
+        public object DynamicSettings { get; set; }
 
         public bool IsValid()
         {
@@ -37,6 +38,15 @@ namespace Pandora.Cli.Core.Validator
                     if (defaults.Contains(pr.Key) == false)
                         return false;
                 }
+            }
+
+            if ((JArray)DynamicSettings is null)
+                return true;
+
+            foreach (JToken prop in (JArray)DynamicSettings)
+            {
+                if (defaults.Contains(prop.Value<string>()) == false)
+                    return false;
             }
 
             return true;
