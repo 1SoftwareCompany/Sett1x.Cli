@@ -1,5 +1,5 @@
-# create the build instance 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+# create the build instance
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 
 WORKDIR /src                                                                    
 COPY ./src ./
@@ -14,15 +14,14 @@ RUN dotnet build Pandora.Cli.csproj -c Release -o /app
 RUN dotnet publish Pandora.Cli.csproj -c Release -o /app/published
 
 # create the runtime instance 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-alpine3.11 AS runtime 
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-alpine AS runtime 
 
 # add globalization support
 RUN apk add --no-cache icu-libs
 ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
 
-
 WORKDIR /app
                                                             
-COPY --from=build /app/published .
+COPY --from=build /app/published .                         
                             
 ENTRYPOINT ["dotnet", "Pandora.Cli.dll"]
