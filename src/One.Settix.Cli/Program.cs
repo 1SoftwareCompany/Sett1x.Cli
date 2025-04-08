@@ -1,9 +1,9 @@
 ﻿using CommandLine;
-using Pandora.Cli.Core.OptionTypes;
+using One.Settix.Cli.Core.OptionTypes;
 using System;
 using System.Threading.Tasks;
 
-namespace Pandora.Cli.Core
+namespace One.Settix.Cli.Core
 {
     public class Program
     {
@@ -11,14 +11,14 @@ namespace Pandora.Cli.Core
         {
             try
             {
-                PandoraRunner pandoraRunner = new PandoraRunner();
+                SettixRunner settixRunner = new SettixRunner();
 
                 await Parser.Default
                      .ParseArguments<OpenOptions, GetOptions, ValidateOptions>(args)
                      .MapResult<OpenOptions, GetOptions, ValidateOptions, Task>(
-                         async (OpenOptions opts) => await pandoraRunner.OpenCommandAsync(opts),
-                         async (GetOptions opts) => await pandoraRunner.GetCommandAsync(opts),
-                         (ValidateOptions opts) => Task.FromResult(pandoraRunner.ValidateCommand(opts)),
+                         async (OpenOptions opts) => await settixRunner.OpenCommandAsync(opts),
+                         async (GetOptions opts) => await settixRunner.GetCommandAsync(opts),
+                         (ValidateOptions opts) => Task.FromResult(settixRunner.ValidateCommand(opts)),
                          errors => Task.FromResult("Could not set the variable!")
                      );
             }

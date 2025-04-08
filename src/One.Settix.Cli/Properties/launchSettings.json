@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Pandora.Cli.Core": {
+    "One.Settix.Cli.Core": {
       "commandName": "Project",
       "commandLineArgs": "open -a UniCom.Codes.Api -c docker-local -m DESKTOP-8EB4E54 -j UniCom.Codes.Api.json -o consul -h http://consul.local.com:8500"
     }

@@ -4,14 +4,13 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Elders.Pandora;
-using Elders.Pandora.Box;
+using One.Settix.Box;
 using Newtonsoft.Json;
-using Pandora.Cli.Core.OptionTypes;
+using One.Settix.Cli.Core.OptionTypes;
 
-namespace Pandora.Cli.Core
+namespace One.Settix.Cli.Core
 {
-    public class PandoraRunner
+    public class SettixRunner
     {
         public async Task<string> GetCommandAsync(object invokedVerbInstance)
         {
@@ -25,11 +24,11 @@ namespace Pandora.Cli.Core
                 Uri consulAddress = null;
                 if (string.IsNullOrEmpty(getOptions.ConsulHost) == false)
                     consulAddress = new Uri(getOptions.ConsulHost);
-                var consul = new ConsulForPandora(consulAddress);
+                var consul = new ConsulForSettix(consulAddress);
                 ApplicationContext currentContext = new ApplicationContext(applicationName, cluster, machine);
 
-                var pandora = new Elders.Pandora.Pandora(currentContext, consul);
-                var value = await pandora.GetAsync(getOptions.Key).ConfigureAwait(false);
+                var settix = new Settix(currentContext, consul);
+                var value = await settix.GetAsync(getOptions.Key).ConfigureAwait(false);
                 Console.WriteLine(value);
             }
 
@@ -50,10 +49,10 @@ namespace Pandora.Cli.Core
             if (!File.Exists(jarFile)) throw new FileNotFoundException("Jar file is required.", jarFile);
 
             Jar jar = JsonConvert.DeserializeObject<Jar>(File.ReadAllText(jarFile));
-            Box box = Box.Mistranslate(jar);
+            Box.Box box = Box.Box.Mistranslate(jar);
             if (box.Name.Equals(applicationName, StringComparison.OrdinalIgnoreCase) == false) throw new InvalidProgramException("Invalid application name");
 
-            Configuration cfg = box.Open(new PandoraOptions(cluster, machine));
+            Configuration cfg = box.Open(new SettixOptions(cluster, machine));
 
             if (openOptions.Output == OpenOptions.EnvVarOutput)
             {
@@ -76,19 +75,19 @@ namespace Pandora.Cli.Core
                 Uri consulAddress = null;
                 if (string.IsNullOrEmpty(openOptions.ConsulHost) == false)
                     consulAddress = new Uri(openOptions.ConsulHost);
-                var consul = new ConsulForPandora(consulAddress);
+                var consul = new ConsulForSettix(consulAddress);
                 var currentContext = new ApplicationContext(applicationName, cluster, machine);
 
-                var pandora = new Elders.Pandora.Pandora(currentContext, consul);
+                var settix = new Settix(currentContext, consul);
 
-                foreach (DeployedSetting setting in pandora.GetAll(currentContext).ToList())
+                foreach (DeployedSetting setting in settix.GetAll(currentContext).ToList())
                 {
                     // We must skip all dynamic settings
                     string key = NameBuilder.GetSettingName(setting.Key.ApplicationName, setting.Key.Cluster, setting.Key.Machine, setting.Key.SettingKey);
                     if (cfg.IsDynamic(key))
                         continue;
 
-                    await pandora.DeleteAsync(setting.Key.SettingKey).ConfigureAwait(false);
+                    await settix.DeleteAsync(setting.Key.SettingKey).ConfigureAwait(false);
                 }
 
                 foreach (KeyValuePair<string, object> setting in cfg.AsDictionary())

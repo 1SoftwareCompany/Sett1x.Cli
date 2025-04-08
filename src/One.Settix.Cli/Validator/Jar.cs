@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Pandora.Cli.Core.Validator
+namespace One.Settix.Cli.Core.Validator
 {
     public class Jar
     {

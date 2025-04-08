@@ -8,8 +8,8 @@
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Pandora" Version="4.0.0" />
-    <PackageReference Include="Pandora.Consul" Version="4.0.0" />
+    <PackageReference Include="Sett1x" Version="5.0.0" />
+    <PackageReference Include="Sett1x.Consul" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

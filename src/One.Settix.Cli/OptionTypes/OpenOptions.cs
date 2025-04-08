@@ -1,8 +1,8 @@
 ﻿using CommandLine;
 
-namespace Pandora.Cli.Core.OptionTypes
+namespace One.Settix.Cli.Core.OptionTypes
 {
-    [Verb("open", HelpText = "Opens the pandora box.")]
+    [Verb("open", HelpText = "Opens the sett1x box.")]
     public class OpenOptions
     {
         public const string EnvVarOutput = "envvar";

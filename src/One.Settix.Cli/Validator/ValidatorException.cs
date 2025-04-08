@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Pandora.Cli.Core.Validator
+namespace One.Settix.Cli.Core.Validator
 {
     public class ValidatorException : Exception
     {

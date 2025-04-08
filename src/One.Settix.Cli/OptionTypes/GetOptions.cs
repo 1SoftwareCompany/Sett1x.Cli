@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Pandora.Cli.Core.OptionTypes
+namespace One.Settix.Cli.Core.OptionTypes
 {
     [Verb("get", HelpText = "Gets a specific key.")]
     public class GetOptions

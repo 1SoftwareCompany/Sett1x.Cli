@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
 
-namespace Pandora.Cli.Core.Validator
+namespace One.Settix.Cli.Core.Validator
 {
     public static class Validator
     {

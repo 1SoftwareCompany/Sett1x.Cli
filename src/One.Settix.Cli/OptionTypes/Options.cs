@@ -1,7 +1,7 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 
-namespace Pandora.Cli.Core.OptionTypes
+namespace One.Settix.Cli.Core.OptionTypes
 {
     public class Options
     {
